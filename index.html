@@ -1,0 +1,398 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Tetris</title>
+    <link rel="stylesheet" href="style.css">
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Rajdhani&display=swap');
+    </style>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.3/jquery.min.js"></script>
+</head>
+<body>
+    <div id="game">
+        <div id="hold">
+            <div id="hold-text">Hold</div>
+            <div id="hold-piece"><img id="holdP" src=""></div>
+            <div id="levelUp">LEVEL UP</div>
+        </div>
+        <div id="board">
+            <!-- <div id="time-text">Time <p id="time">0:00</p></div>
+            <div id="score-text">Score<p id="score" class="scorePoints">0</p></div>
+            <div id="level-text">Level<p id="level">1</p></div> -->
+
+            <div id="roundInfo">
+                <!-- Score<p id="score" class="scorePoints">0</p> -->
+                <div id="levelDiv">
+                    <span id="level-text">Level</span>
+                    <p id="level" class="scorePoints">0</p>
+                </div>
+                <div id="scoreDiv">
+                    <span id="score-text">Score</span>
+                    <p id="score" class="scorePoints">0</p>
+                </div>
+                <div id="timeDiv">
+                    <span id="time-text">Time</span>
+                    <p id="time" class="scorePoints">0:00</p>
+                </div>
+            </div>
+            <div class="row" id="row1">
+                <div class="column" id="column1"></div>
+                <div class="column" id="column2"></div>
+                <div class="column" id="column3"></div>
+                <div class="column" id="column4"></div>
+                <div class="column" id="column5"></div>
+                <div class="column" id="column6"></div>
+                <div class="column" id="column7"></div>
+                <div class="column" id="column8"></div>
+                <div class="column" id="column9"></div>
+                <div class="column" id="column10"></div>
+            </div>
+            <div class="row" id="row2">
+                <div id="whyThisScore"></div>
+                <div class="column" id="column1"></div>
+                <div class="column" id="column2"></div>
+                <div class="column" id="column3"></div>
+                <div class="column" id="column4"></div>
+                <div class="column" id="column5"></div>
+                <div class="column" id="column6"></div>
+                <div class="column" id="column7"></div>
+                <div class="column" id="column8"></div>
+                <div class="column" id="column9"></div>
+                <div class="column" id="column10"></div>
+            </div>
+            <div class="row" id="row3">
+                <div class="column" id="column1"></div>
+                <div class="column" id="column2"></div>
+                <div class="column" id="column3"></div>
+                <div class="column" id="column4"></div>
+                <div class="column" id="column5"></div>
+                <div class="column" id="column6"></div>
+                <div class="column" id="column7"></div>
+                <div class="column" id="column8"></div>
+                <div class="column" id="column9"></div>
+                <div class="column" id="column10"></div>
+            </div>
+            <div class="row" id="row4">
+                <div class="column" id="column1"></div>
+                <div class="column" id="column2"></div>
+                <div class="column" id="column3"></div>
+                <div class="column" id="column4"></div>
+                <div class="column" id="column5"></div>
+                <div class="column" id="column6"></div>
+                <div class="column" id="column7"></div>
+                <div class="column" id="column8"></div>
+                <div class="column" id="column9"></div>
+                <div class="column" id="column10"></div>
+            </div>
+            <div class="row" id="row5">
+                <div class="column" id="column1"></div>
+                <div class="column" id="column2"></div>
+                <div class="column" id="column3"></div>
+                <div class="column" id="column4"></div>
+                <div class="column" id="column5"></div>
+                <div class="column" id="column6"></div>
+                <div class="column" id="column7"></div>
+                <div class="column" id="column8"></div>
+                <div class="column" id="column9"></div>
+                <div class="column" id="column10"></div>
+            </div>
+            <div class="row" id="row6">
+                <div class="column" id="column1"></div>
+                <div class="column" id="column2"></div>
+                <div class="column" id="column3"></div>
+                <div class="column" id="column4"></div>
+                <div class="column" id="column5"></div>
+                <div class="column" id="column6"></div>
+                <div class="column" id="column7"></div>
+                <div class="column" id="column8"></div>
+                <div class="column" id="column9"></div>
+                <div class="column" id="column10"></div>
+            </div>
+            <div class="row" id="row7">
+                <div class="column" id="column1"></div>
+                <div class="column" id="column2"></div>
+                <div class="column" id="column3"></div>
+                <div class="column" id="column4"></div>
+                <div class="column" id="column5"></div>
+                <div class="column" id="column6"></div>
+                <div class="column" id="column7"></div>
+                <div class="column" id="column8"></div>
+                <div class="column" id="column9"></div>
+                <div class="column" id="column10"></div>
+            </div>
+            <div class="row" id="row8">
+                <div class="column" id="column1"></div>
+                <div class="column" id="column2"></div>
+                <div class="column" id="column3"></div>
+                <div class="column" id="column4"></div>
+                <div class="column" id="column5"></div>
+                <div class="column" id="column6"></div>
+                <div class="column" id="column7"></div>
+                <div class="column" id="column8"></div>
+                <div class="column" id="column9"></div>
+                <div class="column" id="column10"></div>
+            </div>
+            <div class="row" id="row9">
+                <div class="column" id="column1"></div>
+                <div class="column" id="column2"></div>
+                <div class="column" id="column3"></div>
+                <div class="column" id="column4"></div>
+                <div class="column" id="column5"></div>
+                <div class="column" id="column6"></div>
+                <div class="column" id="column7"></div>
+                <div class="column" id="column8"></div>
+                <div class="column" id="column9"></div>
+                <div class="column" id="column10"></div>
+            </div>
+            <div class="row" id="row10">
+                <div class="column" id="column1"></div>
+                <div class="column" id="column2"></div>
+                <div class="column" id="column3"></div>
+                <div class="column" id="column4"></div>
+                <div class="column" id="column5"></div>
+                <div class="column" id="column6"></div>
+                <div class="column" id="column7"></div>
+                <div class="column" id="column8"></div>
+                <div class="column" id="column9"></div>
+                <div class="column" id="column10"></div>
+            </div>
+            <div class="row" id="row11">
+                <div class="column" id="column1"></div>
+                <div class="column" id="column2"></div>
+                <div class="column" id="column3"></div>
+                <div class="column" id="column4"></div>
+                <div class="column" id="column5"></div>
+                <div class="column" id="column6"></div>
+                <div class="column" id="column7"></div>
+                <div class="column" id="column8"></div>
+                <div class="column" id="column9"></div>
+                <div class="column" id="column10"></div>
+            </div>
+            <div class="row" id="row12">
+                <div class="column" id="column1"></div>
+                <div class="column" id="column2"></div>
+                <div class="column" id="column3"></div>
+                <div class="column" id="column4"></div>
+                <div class="column" id="column5"></div>
+                <div class="column" id="column6"></div>
+                <div class="column" id="column7"></div>
+                <div class="column" id="column8"></div>
+                <div class="column" id="column9"></div>
+                <div class="column" id="column10"></div>
+            </div>
+            <div class="row" id="row13">
+                <div class="column" id="column1"></div>
+                <div class="column" id="column2"></div>
+                <div class="column" id="column3"></div>
+                <div class="column" id="column4"></div>
+                <div class="column" id="column5"></div>
+                <div class="column" id="column6"></div>
+                <div class="column" id="column7"></div>
+                <div class="column" id="column8"></div>
+                <div class="column" id="column9"></div>
+                <div class="column" id="column10"></div>
+            </div>
+            <div class="row" id="row14">
+                <div class="column" id="column1"></div>
+                <div class="column" id="column2"></div>
+                <div class="column" id="column3"></div>
+                <div class="column" id="column4"></div>
+                <div class="column" id="column5"></div>
+                <div class="column" id="column6"></div>
+                <div class="column" id="column7"></div>
+                <div class="column" id="column8"></div>
+                <div class="column" id="column9"></div>
+                <div class="column" id="column10"></div>
+            </div>
+            <div class="row" id="row15">
+                <div class="column" id="column1"></div>
+                <div class="column" id="column2"></div>
+                <div class="column" id="column3"></div>
+                <div class="column" id="column4"></div>
+                <div class="column" id="column5"></div>
+                <div class="column" id="column6"></div>
+                <div class="column" id="column7"></div>
+                <div class="column" id="column8"></div>
+                <div class="column" id="column9"></div>
+                <div class="column" id="column10"></div>
+            </div>
+            <div class="row" id="row16">
+                <div class="column" id="column1"></div>
+                <div class="column" id="column2"></div>
+                <div class="column" id="column3"></div>
+                <div class="column" id="column4"></div>
+                <div class="column" id="column5"></div>
+                <div class="column" id="column6"></div>
+                <div class="column" id="column7"></div>
+                <div class="column" id="column8"></div>
+                <div class="column" id="column9"></div>
+                <div class="column" id="column10"></div>
+            </div>
+            <div class="row" id="row17">
+                <div class="column" id="column1"></div>
+                <div class="column" id="column2"></div>
+                <div class="column" id="column3"></div>
+                <div class="column" id="column4"></div>
+                <div class="column" id="column5"></div>
+                <div class="column" id="column6"></div>
+                <div class="column" id="column7"></div>
+                <div class="column" id="column8"></div>
+                <div class="column" id="column9"></div>
+                <div class="column" id="column10"></div>
+            </div>
+            <div class="row" id="row18">
+                <div class="column" id="column1"></div>
+                <div class="column" id="column2"></div>
+                <div class="column" id="column3"></div>
+                <div class="column" id="column4"></div>
+                <div class="column" id="column5"></div>
+                <div class="column" id="column6"></div>
+                <div class="column" id="column7"></div>
+                <div class="column" id="column8"></div>
+                <div class="column" id="column9"></div>
+                <div class="column" id="column10"></div>
+            </div>
+            <div class="row" id="row19">
+                <div class="column" id="column1"></div>
+                <div class="column" id="column2"></div>
+                <div class="column" id="column3"></div>
+                <div class="column" id="column4"></div>
+                <div class="column" id="column5"></div>
+                <div class="column" id="column6"></div>
+                <div class="column" id="column7"></div>
+                <div class="column" id="column8"></div>
+                <div class="column" id="column9"></div>
+                <div class="column" id="column10"></div>
+            </div>
+            <div class="row" id="row20">
+                <div class="column" id="column1"></div>
+                <div class="column" id="column2"></div>
+                <div class="column" id="column3"></div>
+                <div class="column" id="column4"></div>
+                <div class="column" id="column5"></div>
+                <div class="column" id="column6"></div>
+                <div class="column" id="column7"></div>
+                <div class="column" id="column8"></div>
+                <div class="column" id="column9"></div>
+                <div class="column" id="column10"></div>
+            </div>
+            <!-- <button onclick="startGame()">Start</button> -->
+            <button onclick="stopGame()">Restart</button>
+            
+            
+        </div>
+        <div id="next">
+            <div id="next-text">Next</div>
+            <div class="next-piece"><img class="nextP" src=""></div>
+            <div class="next-piece"><img class="nextP" src=""></div>
+            <div class="next-piece"><img class="nextP" src=""></div>
+            <div class="next-piece"><img class="nextP" src=""></div>
+            <div class="next-piece"><img class="nextP" src=""></div>
+            <div class="next-piece"><img class="nextP" src=""></div>
+        </div>
+        <div id="endScreen">
+            <div id="end">
+                <div class="titleDiv">
+                    <span class="blockTitle">GAME OVER</span>
+                </div>
+                <div id="saveScore">
+                    <div id="gameResults">
+                        <div id="finalLevel" class="finalDivs">
+                            <span id="finalLevelText" class="finalTexts">Level</span>
+                            <span id="finalLevelNumber" class="scorePoints"></span>
+                        </div>
+                        <div id="finalScore" class="finalDivs">
+                            <span id="finalScoreText" class="finalTexts">Score</span>
+                            <span id="finalScoreNumber" class="scorePoints"></span>
+                        </div>
+                        <div id="finalTime" class="finalDivs">
+                            <span id="finalTimeText" class="finalTexts">Time</span>
+                            <span id="finalTimeNumber" class="scorePoints"></span>
+                        </div>
+                    </div>
+                    <form>
+                    <input type="text" id="PlayerName" maxlength="15" placeholder="Enter your name...">
+                    <button type="submit" id="submit-button">Save score</button>
+                    </form>
+                    
+                </div>
+                <div id="startDiv">
+                    <span id="startGame" onclick="startGame()">Play Again</span>
+                </div>
+            </div>
+            <div id="launch">
+                <div class="titleDiv">
+                    <span class="blockTitle">WELCOME TO TETRIS</span>
+                </div>
+                <div id="saveScore">
+                    <span id="madeBy">Made By:</span>
+                    <span class="authors">Kacper Z.</span>
+                    <span class="authors">Mateusz G.</span>
+                </div>
+                <div id="startDiv">
+                    <span id="startGame" onclick="startGame()">Play</span>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div id="block-help">
+        <div class="titleDiv">
+            <span class="blockTitle">HOW TO PLAY</span>
+        </div>
+        <div id="help">
+            <span class="help-titles">Move</span>
+            <div>
+                <img class="keycaps" src="images/KeyCaps/keycapLeft.png" alt="Left Arrow">
+                <span class="or"></span>
+                <img class="keycaps" src="images/KeyCaps/keycapRight.png" alt="Right Arrow">
+            </div>
+            <span class="help-titles">Rotate Clockwise</span>
+            <div>
+                <img class="keycaps" src="images/KeyCaps/keycapX.png" alt="X">
+                <span class="or">OR</span>
+                <img class="keycaps" src="images/KeyCaps/keycapUp.png" alt="Up Arrow">
+            </div>
+            <span class="help-titles">Rotate Counter-Clockwise</span>
+            <div>
+                <img class="keycaps" src="images/KeyCaps/keycapZ.png" alt="Z">
+                <span class="or">OR</span>
+                <img class="keycaps" src="images/KeyCaps/keycapCtrl.png" alt="Ctrl">
+            </div>
+            <span class="help-titles">Drop: Soft</span>
+            <div>
+                <img class="keycaps" src="images/KeyCaps/keycapDown.png" alt="Down Arrow">
+            </div>
+            <span class="help-titles">Drop: Hard</span>
+            <div>
+                <img class="keycaps" src="images/KeyCaps/keycapSpace.png" alt="Space">
+            </div>
+            <span class="help-titles">Hold Piece</span>
+            <div>
+                <img class="keycaps" src="images/KeyCaps/keycapC.png" alt="C">
+                <span class="or">OR</span>
+                <img class="keycaps" src="images/KeyCaps/keycapShift.png" alt="Shift">
+            </div>
+        </div>
+
+    </div>
+    <div id="block-leaderboard">
+        <div class="titleDiv">
+            <span class="blockTitle">LEADERBOARD</span>
+        </div>
+        <div id="lbDiv">
+            <div id="leaderboard">
+                <!-- miejsce na leaderboard -->
+                <table id="leaderboard-table">
+                    
+                </table>
+            </div>
+        </div>
+    </div>
+<script src="blocks.js"></script>
+<script src="script.js"></script>
+<script src="sendPost.js"></script>
+</body>
+</html>
