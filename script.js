@@ -57,6 +57,8 @@ function startGame() {
         score = 0;
 
         document.querySelector("#level").innerHTML = 0;
+
+        drawGhostBlock();
     }
 }
 function changeVisibility()
@@ -205,6 +207,7 @@ function clearBlock(){
         cell.style.color = "";
         cell.style.backgroundColor = "";
     });
+    // drawGhostBlock();
 }
 function drawGhostBlock(){
     //to tutaj ma zostac niezakomentowane bo smierc
@@ -456,11 +459,11 @@ function deleteFullLines(){
 
             $("#whyThisScore").append("<span>Single: + " + (40 * (level + 1)).toLocaleString("en-US") + "</span><br>")
             .fadeIn(300).animate({fontSize: "20px" }, 500)
-            .animate({ "top": "-30px" }, {
+            .animate({ "top": "-15px" }, {
                 queue: false,
                 duration: 500
             })
-            .fadeOut(500, function() {$("#whyThisScore").animate({ "top": "+30px" }, 1).empty();});
+            .fadeOut(500, function() {$("#whyThisScore").animate({ "top": "+15px" }, 1).empty();});
             
             break;
         case 2:
@@ -468,11 +471,11 @@ function deleteFullLines(){
 
             $("#whyThisScore").append("<span>Double: + " + (100 * (level + 1)).toLocaleString("en-US") + "</span><br>")
             .fadeIn(300).animate({fontSize: "20px" }, 500)
-            .animate({ "top": "-30px" }, {
+            .animate({ "top": "-15px" }, {
                 queue: false,
                 duration: 500
             })
-            .fadeOut(500, function() {$("#whyThisScore").animate({ "top": "+30px" }, 1).empty();});
+            .fadeOut(500, function() {$("#whyThisScore").animate({ "top": "+15px" }, 1).empty();});
             
             break;
         case 3:
@@ -480,11 +483,11 @@ function deleteFullLines(){
 
             $("#whyThisScore").append("<span>Triple: + " + (300 * (level + 1)).toLocaleString("en-US") + "</span><br>")
             .fadeIn(300).animate({fontSize: "20px" }, 500)
-            .animate({ "top": "-30px" }, {
+            .animate({ "top": "-15px" }, {
                 queue: false,
                 duration: 500
             })
-            .fadeOut(500, function() {$("#whyThisScore").animate({ "top": "+30px" }, 1).empty();});
+            .fadeOut(500, function() {$("#whyThisScore").animate({ "top": "+15px" }, 1).empty();});
             
             break;
         case 4:
@@ -492,11 +495,11 @@ function deleteFullLines(){
 
             $("#whyThisScore").append("<span>Tetris: + " + (1200 * (level + 1)).toLocaleString("en-US") + "</span><br>")
             .fadeIn(300).animate({fontSize: "20px" }, 500)
-            .animate({ "top": "-30px" }, {
+            .animate({ "top": "-15px" }, {
                 queue: false,
                 duration: 500
             })
-            .fadeOut(500, function() {$("#whyThisScore").animate({ "top": "+30px" }, 1).empty();});
+            .fadeOut(500, function() {$("#whyThisScore").animate({ "top": "+15px" }, 1).empty();});
             
             break;
     }
@@ -546,7 +549,7 @@ function deleteFullLines(){
              cell.style.backgroundColor = element.color;
          });
     });
-
+    drawGhostBlock();
 }
 let pieces = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14];
 let currentPiece;

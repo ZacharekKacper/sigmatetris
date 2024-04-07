@@ -79,7 +79,7 @@ $('#submit-button').click(function(e) {
     alreadySend = true;
     const finalTime = $('#finalTimeNumber').html();
     tablicaWynikow.push([score, playerName, finalTime, level]);
-    tablicaWynikow.sort(sortFunction);
+    // tablicaWynikow.sort(sortFunction);
     let json_str = JSON.stringify(tablicaWynikow);
     createCookie("leaderboard",json_str);
   }
@@ -93,18 +93,30 @@ function getLeaderboard(){
   tablicaWynikow = JSON.parse(json_str);
   $('#leaderboard-table').html("<tr><th>Place</th><th>Name</th><th>Level</th><th>Score</th><th>Time</th></tr>");
   place = 1
+
+  // console.log(tablicaWynikow)
+  
+  // tablicaWynikow.sort(function(a, b) {
+  //   return b[0] - a[0];
+  // });
+
+  tablicaWynikow.sort(function(a, b) {
+    return b[0] - a[0] || a[2].localeCompare(b[2]);
+  });
+
   tablicaWynikow.forEach(element => {
     $('#leaderboard-table').append(`<tr><td>${place++}</td><td>${element[1]}</td><td>${element[3]}</td><td>${element[0].toLocaleString("en-US")}</td><td>${element[2]}</td></tr>`)
+    console.log(element[0], element[1], element[2], element[3])
   });
 }
 
 
-function sortFunction(a, b) {
-  if (a[0] === b[0]) {
-      return 0;
-  }
-  else {
-      return (a[0] < b[0]) ? -1 : 1;
-  }
-}
+// function sortFunction(a, b) {
+//   if (a[0] === b[0]) {
+//       return 0;
+//   }
+//   else {
+//       return (a[0] < b[0]) ? -1 : 1;
+//   }
+// }
 getLeaderboard()
